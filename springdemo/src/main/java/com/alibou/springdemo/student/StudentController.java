@@ -1,11 +1,7 @@
 package com.alibou.springdemo.student;
-import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -19,13 +15,32 @@ public class StudentController {
         this.service = service;
     }
 
-    @GetMapping
+    @PostMapping
+    public student save ( @RequestBody student student
+    ) {
+        return service.save(student);
+    }
 
+    @GetMapping("/{email}")
+    public student findByEmail ( @PathVariable String email){
+        return (service.findByEmail(email));
+    }
+
+
+
+    @GetMapping
     public List<student> findaAllStudents() {
         return service.findaAllStudents() ;
-
-
-
-
     }
+
+    @PutMapping
+    public student updateStudent(@RequestBody  student student) {
+        return service.update(student);
+    }
+
+    @DeleteMapping("{email}")
+    public void deleteStudent(@PathVariable String email) {
+        service.delete(email);
+    }
+
 }

@@ -2,12 +2,12 @@ package com.alibou.springdemo.student;
 import java.time.LocalDate;
 public class student {
     private String firstName;
-
     private String lastName;
-
     private LocalDate dateOfBirth;
     private String email;
     private int age;
+
+
 
     public String getFirstName() {
         return firstName;
